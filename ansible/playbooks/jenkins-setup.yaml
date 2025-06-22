@@ -1,0 +1,60 @@
+- name: Setup Jenkins Server with Docker, Git, and kubectl
+  hosts: jenkins-server
+  become: yes
+  gather_facts: no
+
+  tasks:
+    - name: Install OpenJDK 17
+      apt:
+        name: openjdk-17-jdk
+        state: present
+        update_cache: yes
+
+    - name: Install Git
+      apt:
+        name: git
+        state: present
+        update_cache: yes
+
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
+        update_cache: yes
+
+    - name: Start and enable Docker service
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Add Jenkins user to Docker group
+      user:
+        name: jenkins
+        groups: docker
+        append: yes
+
+    - name: Install curl for downloading kubectl
+      apt:
+        name: curl
+        state: present
+        update_cache: yes
+
+    - name: Get latest kubectl version
+      shell: curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt
+      register: kubectl_version
+
+    - name: Download latest stable kubectl
+      get_url:
+        url: "https://dl.k8s.io/release/{{ kubectl_version.stdout }}/bin/linux/amd64/kubectl"
+        dest: "/usr/local/bin/kubectl"
+        mode: '0755'
+
+    - name: Verify kubectl installation
+      command: kubectl version --client
+      ignore_errors: yes
+      register: kubectl_output
+
+    - name: Show kubectl version
+      debug:
+        msg: "{{ kubectl_output.stdout }}"

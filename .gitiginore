@@ -1,0 +1,85 @@
+# ========================
+# Terraform
+# ========================
+*.tfstate
+*.tfstate.*
+*.tfplan
+*.tfvars
+.terraform/
+
+# ========================
+# Ansible
+# ========================
+ansible/inventory.ini
+ansible/*.pem
+
+# ========================
+# Jenkins
+# ========================
+jenkins-key.pem
+jenkins-key.pem.pub
+
+# ========================
+# Python
+# ========================
+venv/
+__pycache__/
+*.pyc
+
+# ========================
+# Node.js
+# ========================
+frontend/node_modules/
+backend/node_modules/
+frontend/build/
+backend/dist/
+
+# ========================
+# Docker
+# ========================
+**/.env
+**/.env.*
+docker/volumes/
+*.log
+
+# ========================
+# Kubernetes
+# ========================
+*.yaml~   # temporary/editing files
+
+# ========================
+# System & Editor Files
+# ========================
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# ========================
+# Terraform Sensitive Plan Files
+# ========================
+*.backup
+*.plan
+main.plan
+
+# ========================
+# Ignore Binary Files (e.g., from Windows Terraform provider plugins)
+# ========================
+*.exe
+*.dll
+
+#
+*.tfstate
+*.tfstate.*
+*.tfplan
+*.tfvars
+.terraform/
+*.pem
+*.exe
+*.backup
+*.plan
+venv/
+__pycache__/
+node_modules/
+.env

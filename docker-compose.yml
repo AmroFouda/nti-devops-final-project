@@ -1,0 +1,38 @@
+services:
+  backend:
+    build:
+      context: ./3tier-nodejs/backend
+      dockerfile: ../../docker/backend/Dockerfile
+    image: nti-backend:latest
+    container_name: nti-backend
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=development
+      - DB_HOST=mongodb://mongo:27017/ntiDB
+    depends_on:
+      - mongo
+
+  frontend:
+    build:
+      context: ./3tier-nodejs/frontend
+      dockerfile: ../../docker/frontend/Dockerfile
+    image: nti-frontend:latest
+    container_name: nti-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    volumes:
+      - ./3tier-nodejs/frontend/src:/app/src
+
+  mongo:
+    image: mongo:6.0
+    container_name: nti-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
