@@ -36,3 +36,66 @@ This project showcases a full DevOps pipeline implementation using modern tools 
 ├── jenkins/              # Jenkins pipeline configuration
 ├── README.md
 └── .gitignore
+
+
+---
+
+## 🔧 Infrastructure Setup with Terraform
+
+Provision the entire AWS environment using:
+
+- EKS cluster (2 nodes + auto scaling group + ELB)
+- RDS (MySQL/PostgreSQL) with credentials in Secrets Manager
+- EC2 instance for Jenkins
+- S3 bucket for ELB access logs
+- ECR for Docker images
+- AWS Backup to take daily snapshots of Jenkins instance
+
+```bash
+cd terraform
+terraform init
+terraform apply
+🤖 Configuration Management with Ansible
+Install Jenkins and CloudWatch agent:
+cd ansible
+ansible-playbook playbooks/jenkins-setup.yaml -i inventory.ini
+🐳 Local Development with Docker Compose
+docker compose up --build
+☸️ Kubernetes Deployment
+kubectl apply -f kubernetes/
+🔁 Jenkins CI/CD Pipeline
+Jenkins pipeline is triggered on GitHub pushes and includes:
+
+1-SonarQube Code Quality Scan
+
+2-Trivy Docker Image Scan
+
+3-Build and Push Docker Image to ECR
+
+4-Deploy to Kubernetes using Helm
+
+📊 Monitoring & Alerting
+Prometheus monitors pods and nodes.
+
+Grafana provides dashboards with app metrics.
+
+Alerts are triggered if any pod exceeds 80% CPU or memory.
+
+🛡️ Security Measures
+.gitignore ensures sensitive and auto-generated files are excluded (e.g., .pem, .tfstate, .terraform/, node_modules/, venv/, .env)
+
+RDS credentials stored in AWS Secrets Manager.
+
+Network Policies restrict communication between Kubernetes pods.
+
+CI pipeline fails if SonarQube or Trivy scans fail.
+
+📸 Screenshots / Architecture Diagram
+(Add screenshots of: Jenkins pipeline, Grafana dashboards, AWS architecture diagram, etc. if available)
+
+👤 Author
+Amro Fouda
+GitHub: @AmroFouda
+
+
+
