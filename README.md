@@ -1,13 +1,13 @@
-# NTI DevOps Final Project
+# 🚀 NTI DevOps Final Project
 
 This project showcases a full DevOps pipeline implementation using modern tools and best practices, as part of the NTI DevOps program.
 
 ---
 
-## 🚀 Project Goals
+## 🎯 Project Goals
 
-- Deploy a 3-tier Node.js application (frontend, backend, database) using infrastructure as code.
-- Implement CI/CD pipeline using Jenkins and GitHub.
+- Deploy a 3-tier Node.js application (frontend, backend, database) using Infrastructure as Code.
+- Implement a CI/CD pipeline using Jenkins and GitHub.
 - Apply security, monitoring, and scalability best practices.
 
 ---
@@ -19,23 +19,51 @@ This project showcases a full DevOps pipeline implementation using modern tools 
 - **Containerization:** Docker, Docker Compose
 - **Orchestration:** Kubernetes (EKS), Helm
 - **CI/CD:** Jenkins, GitHub
-- **Security:** Trivy, AWS IAM
+- **Security:** Trivy, AWS IAM, Network Policies
 - **Monitoring:** Prometheus, Grafana, AWS CloudWatch
-- **Quality Gates:** SonarQube
+- **Code Quality:** SonarQube
 
 ---
 
-## 🧱 Project Structure
+## 📁 Project Structure
 
 ```bash
-.
-pre><code> 📁 nti-devops-final-project/ ├── 3tier-nodejs/ # Source code for frontend & backend apps │ ├── frontend/ # React frontend app │ └── backend/ # Node.js backend app │ ├── ansible/ # Ansible automation │ ├── inventory.ini # Ansible inventory file │ └── playbooks/ │ └── jenkins-setup.yaml │ ├── docker/ # Dockerfiles for local testing │ ├── frontend/ │ └── backend/ │ ├── kubernetes/ # Kubernetes manifests for EKS │ ├── frontend-deployment.yaml │ └── backend-deployment.yaml │ ├── terraform/ # Terraform IaC for AWS resources │ ├── main.tf # Entry point │ ├── vpc.tf # VPC setup │ ├── eks.tf # EKS cluster │ ├── rds.tf # RDS DB │ ├── jenkins.tf # Jenkins EC2 setup │ ├── ecr.tf # ECR registry │ ├── outputs.tf # Output variables │ └── jenkins-key.pem # SSH private key (ignored in Git) │ ├── docker-compose.yml # Run the full app locally ├── .gitignore # Ignore unnecessary/sensitive files └── README.md </code></pre>
+nti-devops-final-project/
+├── 3tier-nodejs/             # Frontend & backend application code
+│   ├── frontend/             # React frontend app
+│   └── backend/              # Node.js backend app
+│
+├── ansible/                  # Ansible for configuration management
+│   ├── inventory.ini
+│   └── playbooks/
+│       └── jenkins-setup.yaml
+│
+├── docker/                   # Dockerfiles for local development
+│   ├── frontend/
+│   └── backend/
+│
+├── kubernetes/               # Kubernetes manifests for EKS
+│   ├── frontend-deployment.yaml
+│   └── backend-deployment.yaml
+│
+├── terraform/                # Terraform IaC files
+│   ├── main.tf
+│   ├── vpc.tf
+│   ├── eks.tf
+│   ├── rds.tf
+│   ├── jenkins.tf
+│   ├── ecr.tf
+│   ├── outputs.tf
+│   └── jenkins-key.pem (ignored)
+│
+├── docker-compose.yml        # Run app locally
+├── .gitignore                # Ignore sensitive/unnecessary files
+└── README.md
 
 ## 🚀 How to Use
 
 ### 1. Infrastructure Provisioning (Terraform)
 
-```bash
 cd terraform/
 terraform init
 terraform plan
@@ -56,7 +84,7 @@ Provision the entire AWS environment using:
 - ECR for Docker images
 - AWS Backup to take daily snapshots of Jenkins instance
 
-```bash
+
 cd terraform
 terraform init
 terraform apply
