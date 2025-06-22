@@ -29,13 +29,18 @@ This project showcases a full DevOps pipeline implementation using modern tools 
 
 ```bash
 .
-├── ansible/              # Jenkins setup and CloudWatch agent
-├── docker/               # Dockerfiles for frontend and backend
-├── kubernetes/           # K8s manifests + network policies
-├── terraform/            # AWS infra setup (EKS, RDS, EC2, S3, Backup, etc.)
-├── jenkins/              # Jenkins pipeline configuration
-├── README.md
-└── .gitignore
+pre><code> 📁 nti-devops-final-project/ ├── 3tier-nodejs/ # Source code for frontend & backend apps │ ├── frontend/ # React frontend app │ └── backend/ # Node.js backend app │ ├── ansible/ # Ansible automation │ ├── inventory.ini # Ansible inventory file │ └── playbooks/ │ └── jenkins-setup.yaml │ ├── docker/ # Dockerfiles for local testing │ ├── frontend/ │ └── backend/ │ ├── kubernetes/ # Kubernetes manifests for EKS │ ├── frontend-deployment.yaml │ └── backend-deployment.yaml │ ├── terraform/ # Terraform IaC for AWS resources │ ├── main.tf # Entry point │ ├── vpc.tf # VPC setup │ ├── eks.tf # EKS cluster │ ├── rds.tf # RDS DB │ ├── jenkins.tf # Jenkins EC2 setup │ ├── ecr.tf # ECR registry │ ├── outputs.tf # Output variables │ └── jenkins-key.pem # SSH private key (ignored in Git) │ ├── docker-compose.yml # Run the full app locally ├── .gitignore # Ignore unnecessary/sensitive files └── README.md </code></pre>
+
+## 🚀 How to Use
+
+### 1. Infrastructure Provisioning (Terraform)
+
+```bash
+cd terraform/
+terraform init
+terraform plan
+terraform apply
+
 
 
 ---
