@@ -1,0 +1,14 @@
+replicaCount: 2
+
+image:
+  repository: 015869558543.dkr.ecr.us-east-1.amazonaws.com/nti-devops-project-app-repo
+  tag: frontend-latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: LoadBalancer
+  port: 80
+  targetPort: 3000
+
+env:
+  BACKEND_URL: http://backend-service:5000/api

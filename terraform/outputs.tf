@@ -28,7 +28,13 @@ output "docker_login_command" {
   description = "Docker login command for ECR"
   value       = "aws ecr get-login-password | docker login --username AWS --password-stdin ${aws_ecr_repository.app_repo.repository_url}"
 }
-output "rds_endpoint" {
-  description = "RDS Instance Endpoint"
-  value       = aws_db_instance.nti_db.endpoint
+
+output "dynamodb_table_name" {
+  description = "Name of the DynamoDB table"
+  value       = aws_dynamodb_table.users_table.name
+}
+
+output "dynamodb_table_arn" {
+  description = "ARN of the DynamoDB table"
+  value       = aws_dynamodb_table.users_table.arn
 }

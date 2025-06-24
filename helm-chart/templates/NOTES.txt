@@ -1,0 +1,7 @@
+Frontend is ready!
+
+To access your application:
+  http://<EXTERNAL-IP>:80
+
+Backend API is available at:
+  http://backend-service:5000/api

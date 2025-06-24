@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "nti-frontend.fullname" . }}
+  labels:
+    app: {{ include "nti-frontend.name" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "nti-frontend.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "nti-frontend.name" . }}
+    spec:
+      containers:
+        - name: {{ include "nti-frontend.name" . }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.service.targetPort }}
+          env:
+            - name: REACT_APP_BACKEND_API
+              value: "{{ .Values.env.BACKEND_URL }}"
+      imagePullSecrets:
+        - name: ecr-pull-secret

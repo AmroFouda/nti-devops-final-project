@@ -51,3 +51,9 @@ variable "public_subnets" {
   type        = list(string)
   default     = ["10.0.1.0/24", "10.0.2.0/24"]
 }
+# Associate each public subnet with the public route table
+resource "aws_route_table_association" "public_assoc" {
+  count          = length(var.public_subnets)
+  subnet_id      = aws_subnet.public_subnets[count.index].id
+  route_table_id = aws_route_table.public_rt.id
+}

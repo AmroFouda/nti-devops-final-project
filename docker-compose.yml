@@ -6,12 +6,11 @@ services:
     image: nti-backend:latest
     container_name: nti-backend
     ports:
-      - "5000:5000"
+      - "3001:3001"
     environment:
       - NODE_ENV=development
-      - DB_HOST=mongodb://mongo:27017/ntiDB
-    depends_on:
-      - mongo
+      - AWS_REGION=us-east-1       
+      - DYNAMODB_TABLE=nti-mongo-table
 
   frontend:
     build:
@@ -25,14 +24,3 @@ services:
       - CHOKIDAR_USEPOLLING=true
     volumes:
       - ./3tier-nodejs/frontend/src:/app/src
-
-  mongo:
-    image: mongo:6.0
-    container_name: nti-mongo
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongo-data:/data/db
-
-volumes:
-  mongo-data:
