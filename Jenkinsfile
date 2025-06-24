@@ -13,12 +13,13 @@ pipeline {
         checkout scm
       }
     }
+stage('Build Docker Image') {
+  steps {
+    sh 'docker build -t 015869558543.dkr.ecr.us-east-1.amazonaws.com/nti-devops-project-app-repo:3 -f docker/backend/Dockerfile .'
+  }
+}
 
-    stage('Build Docker Image') {
-      steps {
-        sh 'docker build -t $ECR_REPO:$IMAGE_TAG .'
-      }
-    }
+  
 
     stage('Push to ECR') {
       steps {
