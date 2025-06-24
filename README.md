@@ -1,4 +1,4 @@
-# 🚀 NTI DevOps Final Project
+# 🚀 NTI DevOps Final Project  
 
 This project showcases a full DevOps pipeline implementation using modern tools and best practices, as part of the NTI DevOps program.
 
